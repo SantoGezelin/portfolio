@@ -5,88 +5,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Santo Gezelin | Portfolio</title>
   <meta name="description" content="Santo Gezelin — Mechanical Engineering student focused on Automation & Controls and Robotics." />
+
   <style>
     :root{
-      --bg:#0b0f14;
-      --card:#101826;
-      --text:#e6edf3;
-      --muted:#a9b4c0;
-      --line:#233041;
-      --accent:#6ee7b7;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e5e7eb;
+      --accent:#2563eb;
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(900px 600px at 20% 0%, #132033, var(--bg));
+      background: var(--bg);
       color:var(--text);
       line-height:1.55;
     }
-    a{color:var(--text); text-decoration:none}
-    a:hover{opacity:.9; text-decoration:underline}
+
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
     .wrap{max-width:980px; margin:0 auto; padding:48px 20px 80px}
+
+    /* HERO */
     .top{
-      display:flex; gap:18px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
-      padding:28px; border:1px solid var(--line); border-radius:18px; background: rgba(16,24,38,.65);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      padding:28px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background: var(--card);
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
     }
+
+    .hero-content{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .hero-text{flex:1; min-width:260px}
+
     .name{font-size:34px; margin:0}
     .tag{margin:6px 0 0; color:var(--muted)}
-    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+
+    .chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
     .chip{
-      padding:7px 10px; border-radius:999px; border:1px solid var(--line);
-      background:rgba(0,0,0,.2); color:var(--muted); font-size:13px
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#f8fafc;
+      color:var(--muted);
+      font-size:13px;
     }
-    .btns{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+
+    .btns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
     .btn{
-      display:inline-block; padding:10px 14px; border-radius:12px; border:1px solid var(--line);
-      background:rgba(0,0,0,.25);
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#f8fafc;
+      color:var(--text);
     }
-    .btn.primary{border-color: rgba(110,231,183,.45); background: rgba(110,231,183,.12)}
+
+    .btn.primary{
+      border-color: var(--accent);
+      background:#eff6ff;
+      color:#1d4ed8;
+    }
+
+    /* Headshot */
+    .headshot{
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      object-fit:cover;
+      border:1px solid var(--line);
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
+    }
+
+    /* Sections */
     .section{margin-top:34px}
     h2{margin:0 0 14px; font-size:22px}
-    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px}
-    .card{
-      border:1px solid var(--line); border-radius:16px; padding:18px; background: rgba(16,24,38,.55);
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
     }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      background: var(--card);
+    }
+
     .muted{color:var(--muted)}
     .kicker{font-size:13px; color:var(--muted); margin:0 0 6px}
-    .titleRow{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:baseline}
+
+    .titleRow{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:baseline;
+    }
+
     .role{margin:0; font-weight:700}
+
     ul{margin:10px 0 0 18px; padding:0}
     li{margin:6px 0}
+
     .span6{grid-column: span 6}
     .span12{grid-column: span 12}
-    .footer{margin-top:40px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:14px}
-    @media (max-width: 760px){
+
+    .footer{
+      margin-top:40px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width:760px){
+      .hero-content{flex-direction:column; align-items:flex-start}
+      .headshot{width:120px; height:120px}
       .span6{grid-column: span 12}
       .name{font-size:30px}
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
 
     <!-- HERO -->
     <div class="top">
-      <div>
-        <h1 class="name">Santo Gezelin</h1>
-        <p class="tag">Mechanical Engineering (University of Utah, May 2026) · Automation & Controls · Robotics</p>
+      <div class="hero-content">
 
-        <div class="chips">
-          <span class="chip">GPA 3.625</span>
-          <span class="chip">Robotics & Economics Minor</span>
-          <span class="chip">Arduino · PID · Sensors · Actuators</span>
-          <span class="chip">MATLAB · C++ · Python · ROS</span>
-          <span class="chip">SOLIDWORKS (CSWA) · 3D Printing · Soldering</span>
+        <div class="hero-text">
+          <h1 class="name">Santo Gezelin</h1>
+          <p class="tag">Mechanical Engineering (University of Utah, May 2026)</p>
+
+          <div class="chips">
+            <span class="chip">GPA 3.625</span>
+            <span class="chip">Robotics & Economics Minor</span>
+          </div>
+
+          <div class="btns">
+            <a class="btn primary" href="Gezelin-Resume-Draft4.pdf" target="_blank">Resume (PDF)</a>
+            <a class="btn" href="mailto:santog711@gmail.com">Email</a>
+            <a class="btn" href="tel:+19493951018">Call</a>
+          </div>
         </div>
-      </div>
 
-      <div class="btns">
-        <a class="btn primary" href="Gezelin-Resume-Draft4.pdf" target="_blank">Resume (PDF)</a>
-        <a class="btn" href="https://github.com/SantoGezelin" target="_blank">GitHub</a>
-        <a class="btn" href="mailto:santog711@gmail.com">Email</a>
-        <a class="btn" href="tel:+19493951018">Call</a>
+        <img src="headshot.jpg" alt="Santo Gezelin" class="headshot">
       </div>
     </div>
 
@@ -96,13 +186,12 @@
       <div class="card">
         <p class="muted" style="margin:0">
           I’m a Mechanical Engineering student at the University of Utah focused on automation, controls, and robotics.
-          I like building systems that connect hardware and software — integrating sensors, actuators, and control logic
-          to solve real-world problems and improve workflows.
+          I specialize in integrating sensors, actuators, and control logic to solve real-world problems and improve workflows.
         </p>
       </div>
     </div>
 
-    <!-- EDUCATION -->
+    <!-- EDUCATION (ADDED) -->
     <div class="section">
       <h2>Education</h2>
       <div class="card span12">
@@ -111,12 +200,12 @@
           <p class="muted" style="margin:0">Salt Lake City, UT</p>
         </div>
         <p class="muted" style="margin:6px 0 0">
-          B.S. Mechanical Engineering — <strong>May 2026</strong><br>
+          <strong>B.S. Mechanical Engineering</strong> — May 2026<br>
           Minor in Robotics & Economics
         </p>
         <ul>
           <li>GPA: 3.625</li>
-          <li>Relevant coursework: Robotics, Mechatronics, Controls, Manufacturing Processes, Heat Transfer</li>
+          <li>Relevant coursework: Robotics, Mechatronics, Controls, Manufacturing Processes</li>
         </ul>
       </div>
     </div>
@@ -139,7 +228,7 @@
             <li>MATLAB</li>
             <li>C++</li>
             <li>Python</li>
-            <li>ROS (Robot Operating System)</li>
+            <li>ROS</li>
           </ul>
         </div>
         <div class="card span6">
@@ -166,7 +255,30 @@
     <div class="section">
       <h2>Work Experience</h2>
       <div class="grid">
-        <!-- experience cards unchanged -->
+
+        <div class="card span12">
+          <div class="titleRow">
+            <p class="role">R&amp;D Engineer Intern · BrightUro</p>
+            <p class="muted" style="margin:0">Irvine, CA · Jun 2024 – Aug 2024</p>
+          </div>
+          <ul>
+            <li>Conducted human factors testing in preparation for 510(k) FDA submission</li>
+            <li>Automated assembly processes through programming and robotics</li>
+            <li>Designed and produced 3D components using SOLIDWORKS</li>
+          </ul>
+        </div>
+
+        <div class="card span12">
+          <div class="titleRow">
+            <p class="role">Data Systems & Workflow Engineer Intern · Quantum Surgery Center</p>
+            <p class="muted" style="margin:0">Newport Beach, CA · May 2025 – Aug 2025</p>
+          </div>
+          <ul>
+            <li>Designed and implemented a custom Excel-based CRM</li>
+            <li>Optimized EMR backend workflows</li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
@@ -174,7 +286,25 @@
     <div class="section">
       <h2>Projects</h2>
       <div class="grid">
-        <!-- project cards unchanged -->
+
+        <div class="card span6">
+          <p class="role">Mechatronics Robot</p>
+          <ul>
+            <li>Autonomous robot for a Dune 2–themed competition</li>
+            <li>PID line following and wireless control</li>
+          </ul>
+          <p class="muted">
+            <a href="https://santogezelin.github.io/mechrobot/" target="_blank">View photos & videos →</a>
+          </p>
+        </div>
+
+        <div class="card span6">
+          <p class="role">Projectile Launcher Robot</p>
+          <ul>
+            <li>Placed 3rd out of 80 teams in speed and accuracy competition</li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
@@ -193,6 +323,7 @@
     <div class="footer">
       © <span id="y"></span> Santo Gezelin · Built with GitHub Pages
     </div>
+
   </div>
 
   <script>
