@@ -31,7 +31,7 @@
 
     .wrap{max-width:980px; margin:0 auto; padding:48px 20px 80px}
 
-    /* HERO */
+    /* HERO card */
     .top{
       padding:28px;
       border:1px solid var(--line);
@@ -73,10 +73,12 @@
       display:flex;
       gap:10px;
       flex-wrap:wrap;
+      align-items:center;
       margin-top:16px;
     }
 
     .btn{
+      display:inline-block;
       padding:10px 14px;
       border-radius:12px;
       border:1px solid var(--line);
@@ -90,7 +92,7 @@
       color:#1d4ed8;
     }
 
-    /* Headshot */
+    /* Circular headshot */
     .headshot{
       width:150px;
       height:150px;
@@ -98,6 +100,8 @@
       object-fit:cover;
       border:1px solid var(--line);
       box-shadow:0 8px 20px rgba(0,0,0,.12);
+      background:#f8fafc;
+      flex: 0 0 auto;
     }
 
     /* Sections */
@@ -144,7 +148,7 @@
       font-size:14px;
     }
 
-    @media (max-width:760px){
+    @media (max-width: 760px){
       .hero-content{flex-direction:column; align-items:flex-start}
       .headshot{width:120px; height:120px}
       .span6{grid-column: span 12}
@@ -166,17 +170,19 @@
 
           <div class="chips">
             <span class="chip">GPA 3.625</span>
-            <span class="chip">Robotics & Economics Minor</span>
+            <span class="chip">Robotics &amp; Economics Minor</span>
           </div>
 
           <div class="btns">
-            <a class="btn primary" href="Gezelin-Resume-Draft4.pdf" target="_blank">Resume (PDF)</a>
+            <a class="btn primary" href="Gezelin-Resume-Draft4.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
             <a class="btn" href="mailto:santog711@gmail.com">Email</a>
             <a class="btn" href="tel:+19493951018">Call</a>
           </div>
         </div>
 
-        <img src="headshot.jpg" alt="Santo Gezelin" class="headshot">
+        <!-- Put headshot.jpg in the same folder as index.html -->
+        <img class="headshot" src="headshot.jpg" alt="Santo Gezelin headshot" />
+
       </div>
     </div>
 
@@ -191,22 +197,22 @@
       </div>
     </div>
 
-    <!-- EDUCATION (ADDED) -->
+    <!-- EDUCATION -->
     <div class="section">
       <h2>Education</h2>
-      <div class="card span12">
-        <div class="titleRow">
-          <p class="role">University of Utah</p>
-          <p class="muted" style="margin:0">Salt Lake City, UT</p>
+      <div class="grid">
+        <div class="card span12">
+          <div class="titleRow">
+            <p class="role">University of Utah</p>
+            <p class="muted" style="margin:0">Salt Lake City, UT · May 2026</p>
+          </div>
+          <p class="muted" style="margin:8px 0 0">
+            B.S. Mechanical Engineering · Minor in Robotics &amp; Economics
+          </p>
+          <p class="muted" style="margin:8px 0 0">
+            GPA: 3.625
+          </p>
         </div>
-        <p class="muted" style="margin:6px 0 0">
-          <strong>B.S. Mechanical Engineering</strong> — May 2026<br>
-          Minor in Robotics & Economics
-        </p>
-        <ul>
-          <li>GPA: 3.625</li>
-          <li>Relevant coursework: Robotics, Mechatronics, Controls, Manufacturing Processes</li>
-        </ul>
       </div>
     </div>
 
@@ -215,7 +221,7 @@
       <h2>Skills</h2>
       <div class="grid">
         <div class="card span6">
-          <p class="kicker">Automation & Controls</p>
+          <p class="kicker">Automation &amp; Controls</p>
           <ul>
             <li>Arduino (Mega/Uno)</li>
             <li>PID Control</li>
@@ -228,20 +234,20 @@
             <li>MATLAB</li>
             <li>C++</li>
             <li>Python</li>
-            <li>ROS</li>
+            <li>ROS (Robot Operating System)</li>
           </ul>
         </div>
         <div class="card span6">
-          <p class="kicker">Design & Manufacturing</p>
+          <p class="kicker">Design &amp; Manufacturing</p>
           <ul>
             <li>SOLIDWORKS (CSWA)</li>
-            <li>FDM & SLA 3D Printing</li>
+            <li>FDM &amp; SLA 3D Printing</li>
             <li>Basic Machining</li>
             <li>Soldering</li>
           </ul>
         </div>
         <div class="card span6">
-          <p class="kicker">Data & Tools</p>
+          <p class="kicker">Data &amp; Tools</p>
           <ul>
             <li>Excel</li>
             <li>Data Analysis</li>
@@ -255,7 +261,6 @@
     <div class="section">
       <h2>Work Experience</h2>
       <div class="grid">
-
         <div class="card span12">
           <div class="titleRow">
             <p class="role">R&amp;D Engineer Intern · BrightUro</p>
@@ -263,22 +268,25 @@
           </div>
           <ul>
             <li>Conducted human factors testing in preparation for 510(k) FDA submission</li>
-            <li>Automated assembly processes through programming and robotics</li>
-            <li>Designed and produced 3D components using SOLIDWORKS</li>
+            <li>Automated assembly processes through programming and utilization of robots</li>
+            <li>Designed and produced 3D components using SOLIDWORKS to streamline assembly procedures</li>
+            <li>Used AI and Python to scan documents and upload them into an app</li>
+            <li>Evaluated user experience and functionality of the app</li>
+            <li>Participated in root cause analysis after non-conforming products or processes were identified</li>
           </ul>
         </div>
 
         <div class="card span12">
           <div class="titleRow">
-            <p class="role">Data Systems & Workflow Engineer Intern · Quantum Surgery Center</p>
+            <p class="role">Data Systems &amp; Workflow Engineer Intern · Quantum Surgery Center</p>
             <p class="muted" style="margin:0">Newport Beach, CA · May 2025 – Aug 2025</p>
           </div>
           <ul>
-            <li>Designed and implemented a custom Excel-based CRM</li>
-            <li>Optimized EMR backend workflows</li>
+            <li>Designed and implemented a custom Excel-based CRM to track leads, consultations, and conversions</li>
+            <li>Restructured EMR backend data and workflows, resulting in significantly faster system performance</li>
+            <li>Standardized and organized thousands of patient records, improving data accuracy and integration</li>
           </ul>
         </div>
-
       </div>
     </div>
 
@@ -288,20 +296,41 @@
       <div class="grid">
 
         <div class="card span6">
-          <p class="role">Mechatronics Robot</p>
+          <div class="titleRow">
+            <p class="role">Mechatronics Robot</p>
+            <p class="muted" style="margin:0">2025</p>
+          </div>
           <ul>
-            <li>Autonomous robot for a Dune 2–themed competition</li>
-            <li>PID line following and wireless control</li>
+            <li>Designed and built a robot for a Dune 2 themed competition</li>
+            <li>Used Arduino Mega to command motors, actuators, and sensors</li>
+            <li>Used Arduino Uno to enable wireless communication via XBee</li>
+            <li>Used PID control for line following and motor position control</li>
           </ul>
-          <p class="muted">
-            <a href="https://santogezelin.github.io/mechrobot/" target="_blank">View photos & videos →</a>
+          <p class="muted" style="margin-top:12px;">
+            <a href="https://santogezelin.github.io/mechrobot/" target="_blank" rel="noopener">View photos &amp; videos →</a>
           </p>
         </div>
 
         <div class="card span6">
-          <p class="role">Projectile Launcher Robot</p>
+          <div class="titleRow">
+            <p class="role">Projectile Launcher Robot</p>
+            <p class="muted" style="margin:0">2022</p>
+          </div>
           <ul>
-            <li>Placed 3rd out of 80 teams in speed and accuracy competition</li>
+            <li>Used Arduino Mega to command actuators and motors to fire ping-pong balls at targets</li>
+            <li>Placed 3rd out of 80 teams in a speed and accuracy competition</li>
+          </ul>
+        </div>
+
+        <div class="card span12">
+          <div class="titleRow">
+            <p class="role">Capstone Project — Kinetic Art Installation</p>
+            <p class="muted" style="margin:0">2025 – 2026</p>
+          </div>
+          <ul>
+            <li>Designing a kinetic art installation to be on display in the JW Marriott Jr. Institute</li>
+            <li>Programmed camera-based motion detection in MATLAB and sent data to Arduino</li>
+            <li>Consultant for a 12,000 sq. ft. lab area for engineers and architects</li>
           </ul>
         </div>
 
@@ -315,7 +344,7 @@
         <p style="margin:0">
           <span class="muted">Email:</span> <a href="mailto:santog711@gmail.com">santog711@gmail.com</a><br>
           <span class="muted">Phone:</span> <a href="tel:+19493951018">949-395-1018</a><br>
-          <span class="muted">GitHub:</span> <a href="https://github.com/SantoGezelin" target="_blank">github.com/SantoGezelin</a>
+          <span class="muted">GitHub:</span> <a href="https://github.com/SantoGezelin" target="_blank" rel="noopener">github.com/SantoGezelin</a>
         </p>
       </div>
     </div>
