@@ -73,6 +73,7 @@
 
     /* HERO card (kept from the original page) */
     .top{
+      position:relative;
       padding:28px;
       border:1px solid var(--line);
       border-radius:18px;
@@ -393,7 +394,7 @@
       .project-head{padding:16px 16px 12px}
       .project-body{padding:16px}
       h3{font-size:18px}
-      .theme-switch{top:10px; right:10px; padding:4px; gap:0}
+      .theme-switch{position:absolute; top:12px; right:12px; padding:4px; gap:0; box-shadow:0 2px 8px rgba(0,0,0,.12)}
       .theme-switch .sun, .theme-switch .moon{display:none}
       .theme-switch .track{width:40px; height:22px}
       .theme-switch .knob{width:18px; height:18px}
@@ -403,16 +404,15 @@
 </head>
 
 <body>
-  <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode" title="Toggle light / dark mode">
-    <span class="sun" aria-hidden="true">&#9728;&#xFE0E;</span>
-    <span class="track"><span class="knob"></span></span>
-    <span class="moon" aria-hidden="true">&#9790;&#xFE0E;</span>
-  </button>
-
   <div class="wrap">
 
     <!-- HERO -->
     <div class="top">
+      <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode" title="Toggle light / dark mode">
+        <span class="sun" aria-hidden="true">&#9728;&#xFE0E;</span>
+        <span class="track"><span class="knob"></span></span>
+        <span class="moon" aria-hidden="true">&#9790;&#xFE0E;</span>
+      </button>
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="name">Santo Gezelin</h1>
