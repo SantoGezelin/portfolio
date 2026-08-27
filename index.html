@@ -10,7 +10,7 @@
     (function(){
       try{
         var t = localStorage.getItem('theme');
-        if(t !== 'dark' && t !== 'light'){ t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+        if(t !== 'dark' && t !== 'light'){ t = 'light'; }
         document.documentElement.setAttribute('data-theme', t);
       }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
     })();
@@ -393,7 +393,11 @@
       .project-head{padding:16px 16px 12px}
       .project-body{padding:16px}
       h3{font-size:18px}
-      .theme-switch{top:10px; right:10px; padding:5px 8px}
+      .theme-switch{top:10px; right:10px; padding:4px; gap:0}
+      .theme-switch .sun, .theme-switch .moon{display:none}
+      .theme-switch .track{width:40px; height:22px}
+      .theme-switch .knob{width:18px; height:18px}
+      :root[data-theme="dark"] .theme-switch .knob{left:20px}
     }
   </style>
 </head>
@@ -883,7 +887,7 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    /* Dark mode toggle: remembers the choice, defaults to the system setting */
+    /* Dark mode toggle: remembers the choice, defaults to light */
     (function(){
       var btn = document.getElementById('themeToggle');
       function label(){ btn.setAttribute('aria-checked', document.documentElement.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
