@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Santo Gezelin | Portfolio</title>
+  <meta name="description" content="Santo Gezelin, Mechanical Engineer at Beacon Water Technologies in Savannah, GA. Portfolio of robotics, mechatronics, and electromechanical design projects including a 512 pixel kinetic flip disc installation and a simulated drone interception planner." />
+
+  <script>
+    (function(){
+      try{
+        var t = localStorage.getItem('theme');
+        if(t !== 'dark' && t !== 'light'){ t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+        document.documentElement.setAttribute('data-theme', t);
+      }catch(e){ document.documentElement.setAttribute('data-theme','light'); }
+    })();
+  </script>
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e5e7eb;
+      --accent:#2563eb;
+      --accent-light:#eff6ff;
+      --accent-dark:#1d4ed8;
+      --media-bg:#f1f5f9;
+      --soft:#f8fafc;
+      --surface:#ffffff;
+      --frame:#cbd5e1;
+      --dot:#cbd5e1;
+      --badge-bg:#fefce8; --badge-line:#fde68a; --badge-text:#92400e;
+      --done-bg:#ecfdf5; --done-line:#a7f3d0; --done-text:#065f46;
+      color-scheme:light;
+    }
+    :root[data-theme="dark"]{
+      --bg:#0b1220;
+      --card:#111a2e;
+      --text:#e5e7eb;
+      --muted:#9aa7bd;
+      --line:#26324a;
+      --accent:#60a5fa;
+      --accent-light:#172554;
+      --accent-dark:#93c5fd;
+      --media-bg:#0e1729;
+      --soft:#162036;
+      --surface:#111a2e;
+      --frame:#3b4a66;
+      --dot:#3b4a66;
+      --badge-bg:#3b2f0b; --badge-line:#854d0e; --badge-text:#fde68a;
+      --done-bg:#052e16; --done-line:#166534; --done-text:#86efac;
+      color-scheme:dark;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    img, video{max-width:100%}
+
+    .wrap{max-width:1020px; margin:0 auto; padding:48px 20px 80px}
+
+    /* HERO card (kept from the original page) */
+    .top{
+      padding:28px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background: var(--card);
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    .hero-content{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .hero-text{flex:1; min-width:260px}
+    .name{font-size:34px; margin:0}
+    .tag{margin:6px 0 0; color:var(--muted)}
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .chip{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--soft);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .btns{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:16px}
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:var(--soft);
+      color:var(--text);
+      font-size:14px;
+      cursor:pointer;
+      font-family:inherit;
+      line-height:1.55;
+    }
+    .btn.primary{border-color:var(--accent); background:var(--accent-light); color:var(--accent-dark)}
+    .headshot{
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      object-fit:cover;
+      border:1px solid var(--line);
+      box-shadow:0 8px 20px rgba(0,0,0,.12);
+      background:var(--soft);
+      flex:0 0 auto;
+    }
+
+    /* Sections */
+    .section{margin-top:40px}
+    h2{margin:0 0 16px; font-size:22px}
+    h3{margin:0; font-size:20px}
+    .muted{color:var(--muted)}
+
+    /* Project cards */
+    .projects-grid{display:grid; gap:28px}
+
+    .project-card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      background:var(--card);
+      box-shadow:0 4px 16px rgba(0,0,0,.06);
+    }
+
+    /* Media tabs (Photos / Videos) */
+    .media-tabs{
+      display:flex;
+      gap:0;
+      border-bottom:1px solid var(--line);
+      background:var(--soft);
+    }
+    .media-tab{
+      padding:10px 18px;
+      font-size:13px;
+      font-weight:500;
+      cursor:pointer;
+      border:none;
+      background:transparent;
+      color:var(--muted);
+      border-bottom:2px solid transparent;
+      margin-bottom:-1px;
+      font-family:inherit;
+    }
+    .media-tab.active{color:var(--accent-dark); border-bottom-color:var(--accent)}
+    .media-panel{display:none}
+    .media-panel.active{display:block}
+
+    /* Hero image pair at the top of a card */
+    .hero-pair{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      padding:14px;
+      background:var(--media-bg);
+      border-bottom:1px solid var(--line);
+    }
+    .hero-pair figure{margin:0; background:var(--surface); display:flex; flex-direction:column; border:1px solid var(--frame); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    .hero-pair figcaption{flex:1}
+    .hero-pair img{
+      width:100%;
+      height:380px;
+      object-fit:cover;
+      display:block;
+    }
+    figcaption{
+      padding:10px 14px;
+      font-size:13px;
+      color:var(--muted);
+      font-style:italic;
+      background:var(--surface);
+      border-top:1px solid var(--line);
+      text-align:center;
+    }
+    /* Shrink-to-fit figure: the caption takes exactly the picture's rendered width */
+    .fit{width:fit-content; max-width:100%; margin:0; border:1px solid var(--frame); border-radius:14px; overflow:hidden; background:var(--surface); box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    .fit img, .fit video{border-radius:13px 13px 0 0}
+    .fit figcaption{width:0; min-width:100%; box-sizing:border-box}
+
+    /* Single photo */
+    .photo-single{background:var(--media-bg); border-bottom:1px solid var(--line); display:flex; justify-content:center; padding:14px}
+    .photo-single img{
+      width:auto;
+      height:auto;
+      max-width:100%;
+      max-height:460px;
+      display:block;
+    }
+
+    /* Photo strip (carousel) */
+    .strip-wrap{position:relative; background:var(--media-bg); border-bottom:1px solid var(--line)}
+    .photo-strip{
+      display:flex;
+      gap:0;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .photo-strip::-webkit-scrollbar{display:none}
+    .photo-strip .slide{
+      flex:0 0 100%;
+      width:100%;
+      scroll-snap-align:start;
+      background:var(--media-bg);
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:14px 14px;
+    }
+    .photo-strip img{
+      width:auto;
+      max-width:100%;
+      height:440px;
+      object-fit:contain;
+      display:block;
+    }
+    .photo-strip figcaption{min-height:44px}
+    .video-strip video{
+      width:auto;
+      max-width:100%;
+      height:520px;
+      display:block;
+    }
+    .video-strip .strip-arrow{top:244px}
+
+    .strip-arrow{
+      position:absolute;
+      top:204px;
+      width:38px; height:38px;
+      border-radius:50%;
+      border:1px solid var(--frame);
+      background:var(--surface);
+      color:var(--text);
+      font-size:20px;
+      line-height:1;
+      cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 2px 8px rgba(0,0,0,.12);
+      font-family:inherit;
+    }
+    .strip-arrow.prev{left:10px}
+    .strip-arrow.next{right:10px}
+    .strip-arrow:hover{background:var(--soft)}
+
+    .strip-nav{
+      display:flex;
+      justify-content:center;
+      gap:6px;
+      padding:8px 0 10px;
+      background:var(--surface);
+    }
+    .strip-dot{
+      width:8px; height:8px;
+      border-radius:50%;
+      background:var(--dot);
+      cursor:pointer;
+      border:none;
+      padding:0;
+      transition:background .15s;
+    }
+    .strip-dot.active{background:var(--accent)}
+
+    .strip-hint{
+      padding:6px 14px 10px;
+      font-size:12px;
+      color:var(--muted);
+      text-align:center;
+      background:var(--surface);
+    }
+
+    /* Videos */
+    .video-single{background:var(--media-bg); display:flex; justify-content:center; align-items:flex-start; padding:14px}
+    .video-single figure{margin:0}
+    .video-single video{
+      width:auto;
+      height:auto;
+      max-width:100%;
+      max-height:520px;
+      display:block;
+    }
+    .video-single{border-bottom:1px solid var(--line)}
+    .video-single video{max-height:600px}
+
+    /* Plain text links to external videos */
+    .link-list{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:16px;
+      background:var(--soft);
+      border-bottom:1px solid var(--line);
+    }
+
+    /* Project body */
+    .project-head{padding:20px 22px 14px; border-bottom:1px solid var(--line)}
+    .project-head > :last-child{margin-bottom:0}
+    .project-body{padding:20px 22px 22px}
+    .project-header{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:6px}
+    .project-sub{margin:0 0 10px; color:var(--muted); font-size:14px}
+    .project-desc{margin:0 0 10px}
+    .project-bullets{margin:8px 0 0 18px; padding:0}
+    .project-bullets li{margin:6px 0; color:var(--muted); font-size:15px}
+    .award-badge{
+      display:inline-flex; align-items:center; gap:6px;
+      margin:0 0 10px;
+      padding:5px 10px;
+      border-radius:999px;
+      background:var(--badge-bg);
+      border:1px solid var(--badge-line);
+      font-size:13px;
+      color:var(--badge-text);
+    }
+    .award-badge.done{background:var(--done-bg); border-color:var(--done-line); color:var(--done-text)}
+    .project-links{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+
+    /* Other sections */
+    .card{border:1px solid var(--line); border-radius:16px; padding:18px; background:var(--card)}
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:14px}
+    .span4{grid-column:span 4}
+    .span6{grid-column:span 6}
+    .span12{grid-column:span 12}
+    .kicker{font-size:13px; color:var(--muted); font-weight:700; margin:0 0 6px}
+    .role{font-weight:700; margin:0}
+    .titleRow{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:baseline}
+    .card ul{margin:10px 0 0 18px; padding:0}
+    .card li{margin:6px 0}
+    .card p{margin:0}
+    .card p + p{margin-top:12px}
+
+    .footer{margin-top:40px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:14px}
+
+    /* Light / dark switch, fixed top right */
+    .theme-switch{
+      position:fixed; top:14px; right:14px; z-index:50;
+      display:flex; align-items:center; gap:7px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--card);
+      color:var(--muted);
+      box-shadow:0 4px 14px rgba(0,0,0,.14);
+      cursor:pointer;
+      font:inherit; font-size:14px; line-height:1;
+    }
+    .theme-switch .track{
+      position:relative; width:38px; height:22px; border-radius:999px;
+      background:var(--dot); transition:background .2s;
+    }
+    .theme-switch .knob{
+      position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%;
+      background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.35); transition:left .2s;
+    }
+    .theme-switch .sun{color:#d97706; font-size:16px}
+    .theme-switch .moon{font-size:16px}
+    .theme-switch .moon{color:var(--muted)}
+    :root[data-theme="dark"] .theme-switch .track{background:var(--accent)}
+    :root[data-theme="dark"] .theme-switch .knob{left:18px}
+    :root[data-theme="dark"] .theme-switch .sun{color:var(--muted)}
+    :root[data-theme="dark"] .theme-switch .moon{color:#fbbf24}
+
+    @media (max-width: 760px){
+      .wrap{padding:24px 14px 60px}
+      .hero-content{flex-direction:column; align-items:flex-start}
+      .headshot{width:120px; height:120px}
+      .name{font-size:30px}
+      .span4,.span6{grid-column:span 12}
+      .hero-pair{grid-template-columns:1fr}
+      .hero-pair{padding:10px; gap:10px}
+      .hero-pair img{height:260px}
+      .photo-strip img{height:300px}
+      .strip-arrow{top:144px; width:34px; height:34px}
+      .video-strip video{height:440px}
+      .video-strip .strip-arrow{top:214px}
+      .video-single video{max-height:440px}
+      .project-head{padding:16px 16px 12px}
+      .project-body{padding:16px}
+      h3{font-size:18px}
+      .theme-switch{top:10px; right:10px; padding:5px 8px}
+    }
+  </style>
+</head>
+
+<body>
+  <button class="theme-switch" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode" title="Toggle light / dark mode">
+    <span class="sun" aria-hidden="true">&#9728;&#xFE0E;</span>
+    <span class="track"><span class="knob"></span></span>
+    <span class="moon" aria-hidden="true">&#9790;&#xFE0E;</span>
+  </button>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="top">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="name">Santo Gezelin</h1>
+          <p class="tag">Mechanical Engineer · Robotics · Savannah, GA</p>
+
+          <div class="chips">
+            <span class="chip">GPA 3.65</span>
+            <span class="chip">Robotics Minor</span>
+          </div>
+
+          <div class="btns">
+            <a class="btn primary" href="Gezelin_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+            <a class="btn" href="https://www.linkedin.com/in/santogezelin" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="mailto:santog711@gmail.com">Email</a>
+            <a class="btn" href="tel:+19493951018">Call</a>
+          </div>
+        </div>
+
+        <img class="headshot" src="headshot.jpg" alt="Santo Gezelin headshot" width="400" height="533" />
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+
+        <!-- 1. KINETIC FLIP DISC INSTALLATION -->
+        <div class="project-card">
+
+          <div class="project-head">
+            <div class="project-header">
+              <h3>512 Pixel Kinetic Flip Disc Installation</h3>
+              <span class="muted">Sep 2025 to May 2026</span>
+            </div>
+            <p class="project-sub">Senior Capstone, University of Utah</p>
+            <div class="award-badge done">Completed, permanently installed in the J.W. Marriott Jr. Institute building</div>
+
+          </div>
+          <div class="media-tabs">
+            <button class="media-tab active" onclick="switchTab(this,'capstone-photos')">Photos</button>
+            <button class="media-tab" onclick="switchTab(this,'capstone-videos')">Videos</button>
+          </div>
+
+          <div class="media-panel active" id="capstone-photos">
+            <div class="hero-pair">
+              <figure>
+                <img src="Media/capstone/final-U.png" alt="Flip disc display showing the University of Utah logo" width="589" height="514">
+                <figcaption>The finished display running the university logo. Each disc is a mechanical pixel that flips between a red and a silver face.</figcaption>
+              </figure>
+              <figure>
+                <img src="Media/capstone/final-state-of-utah.png" alt="Flip disc display showing the state of Utah" width="562" height="463">
+                <figcaption>Installed and running in the J.W. Marriott Jr. Institute building.</figcaption>
+              </figure>
+            </div>
+
+            <div class="strip-wrap">
+              <div class="photo-strip" id="strip-capstone">
+                <div class="slide"><figure class="fit">
+                  <img src="Media/capstone/original_hbridge.jpg" alt="H bridge circuit prototyped on a breadboard" loading="lazy" width="480" height="640">
+                  <figcaption>Where it started. A discrete H bridge breadboarded to prove one electromagnet could throw a disc in both directions.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/capstone/coil_winder.jpg" alt="Custom coil winding machine with copper wire spool" loading="lazy" width="1600" height="2133">
+                  <figcaption>The winding rig we built to make electromagnets at volume. 559 pairs of coils came off this machine at 91.6 percent yield inside the target resistance band.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/capstone/mods_before_pcb.jpg" alt="Early display module with hand wound electromagnets and point to point wiring" loading="lazy" width="1600" height="2133">
+                  <figcaption>An early module. Hand wound electromagnets in a 3D printed carrier, each one point to point wired to its own H bridge driver.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/capstone/PCB_with_no_disc.png" alt="Custom driver PCB populated with H bridge drivers and shift registers" loading="lazy" width="718" height="498">
+                  <figcaption>The custom driver board that replaced all that wiring. Shift registers address each coil individually, so modules chain together instead of being wired one off.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/capstone/mods_off_frame.jpg" alt="Completed display modules staged on a table before frame mounting" loading="lazy" width="1600" height="2133">
+                  <figcaption>Modules staged before mounting. 512 pixels and roughly 8,400 soldered joints across the full array.</figcaption>
+                </figure></div>
+              </div>
+              <button class="strip-arrow prev" type="button" aria-label="Previous photo" onclick="stepStrip('strip-capstone',-1)">&#8249;</button>
+              <button class="strip-arrow next" type="button" aria-label="Next photo" onclick="stepStrip('strip-capstone',1)">&#8250;</button>
+            </div>
+            <div class="strip-nav" id="nav-capstone"></div>
+            <div class="strip-hint">Build gallery · 5 photos · swipe, use the arrows, or click a dot</div>
+          </div>
+
+          <div class="media-panel" id="capstone-videos">
+            <div class="strip-wrap video-strip">
+              <div class="photo-strip" id="strip-capstone-videos">
+                <div class="slide"><figure class="fit">
+                  <video controls preload="metadata" playsinline poster="Media/capstone/first_working_prototype_poster.jpg" width="720" height="1280">
+                    <source src="Media/capstone/first_working_prototype.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>
+                  <figcaption>First working prototype (0:11, no audio).</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <video controls preload="metadata" playsinline poster="Media/capstone/kinetic_display_poster.jpg" width="720" height="1280">
+                    <source src="Media/capstone/kinetic_display.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>
+                  <figcaption>The full 512 pixel display running the university logo (2:30, no audio).</figcaption>
+                </figure></div>
+              </div>
+              <button class="strip-arrow prev" type="button" aria-label="Previous video" onclick="stepStrip('strip-capstone-videos',-1)">&#8249;</button>
+              <button class="strip-arrow next" type="button" aria-label="Next video" onclick="stepStrip('strip-capstone-videos',1)">&#8250;</button>
+            </div>
+            <div class="strip-nav" id="nav-capstone-videos"></div>
+            <div class="strip-hint">2 videos · swipe, use the arrows, or click a dot</div>
+          </div>
+
+          <div class="project-body">
+            <p class="project-desc muted">
+              A 512 pixel mechanical display built with electromagnets and flip discs, designed and built with six classmates and permanently installed in the J.W. Marriott Jr. Institute building at the University of Utah.
+            </p>
+            <ul class="project-bullets">
+              <li>Led the electromechanical design from breadboard prototype through custom PCB to permanent commissioned install</li>
+              <li>Designed driver boards using H bridge drivers and shift registers so the array scaled modularly instead of being wired one off</li>
+              <li>Hand wound and individually tested 559 pairs of electromagnets at 91.6 percent yield inside the target resistance band, then used the failure distribution to correct the winding procedure mid build</li>
+              <li>Ran thermal validation with resistance based temperature monitoring to prove safe continuous operation before permanent installation in a public building</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. SIMULATED DRONE INTERCEPTION -->
+        <div class="project-card">
+
+          <div class="project-head">
+            <div class="project-header">
+              <h3>Simulated Drone Interception</h3>
+              <span class="muted">Jan 2026 to May 2026</span>
+            </div>
+            <p class="project-sub">Reachable Set Based Receding Horizon Control for Dynamic Drone Interception, Graduate Motion Planning</p>
+            <div class="award-badge done">Completed · 85.8 percent interception over 500 Monte Carlo trials</div>
+
+          </div>
+          <div class="video-single">
+            <figure class="fit">
+              <video controls preload="metadata" playsinline poster="Media/drone/drone_interception_poster.jpg" width="1108" height="720">
+                <source src="Media/drone/drone_interception_full.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+              <figcaption>3D simulation with PyBullet visualization, full run (1:57). Blue is the interceptor, red is the target.</figcaption>
+            </figure>
+          </div>
+          <!-- Full 1:57 simulation video, compressed to 720p H.264 (see Media/drone/). -->
+
+          <div class="project-body">
+            <p class="project-desc muted">
+              A receding horizon motion planner for intercepting a moving drone with a second drone, written in Python and evaluated across 500 Monte Carlo trials in 3D simulation with PyBullet visualization.
+            </p>
+            <ul class="project-bullets">
+              <li>Built a receding horizon planner that replans at every 0.1 second time step, using Monte Carlo sampling of the target's reachable set to approximate where it could be instead of predicting a single trajectory</li>
+              <li>Modeled both drones as bounded kinematic rigid spheres in a 3D workspace with velocity and acceleration limits and full state observation</li>
+              <li>Evaluated a 27 action control library over a 2 second horizon against a five term cost function covering expected separation, terminal distance, control effort, wall avoidance, and an early interception bonus, roughly 27,000 state propagations per planning cycle at real time speed</li>
+              <li>Achieved 85.8 percent interception with a mean interception time of 10.7 seconds across 500 Monte Carlo trials, with a 35 second per trial limit</li>
+            </ul>
+            <div class="project-links">
+              <a class="btn primary" href="Media/drone/Motion_Planning_Final_Project.pdf" target="_blank" rel="noopener">Read the paper (PDF)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. MECHATRONICS ROBOT -->
+        <div class="project-card">
+
+          <div class="project-head">
+            <div class="project-header">
+              <h3>Mechatronics Robot</h3>
+              <span class="muted">2025</span>
+            </div>
+            <div class="award-badge">5th place out of 30 teams</div>
+            <div class="award-badge">Awarded "Best Wiring"</div>
+
+          </div>
+          <div class="media-tabs">
+            <button class="media-tab active" onclick="switchTab(this,'mech-photos')">Photos</button>
+            <button class="media-tab" onclick="switchTab(this,'mech-videos')">Videos</button>
+          </div>
+
+          <div class="media-panel active" id="mech-photos">
+            <div class="strip-wrap">
+              <div class="photo-strip" id="strip-mech">
+                <div class="slide"><figure class="fit">
+                  <img src="Media/robot_overview.jpg" alt="Mechatronics robot overview" loading="lazy" width="1600" height="1576">
+                  <figcaption>Competition ready autonomous robot platform.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/manrobo2.jpg" alt="Machined brass support rods" loading="lazy" width="598" height="447">
+                  <figcaption>Machined brass support rods fabricated on a lathe.</figcaption>
+                </figure></div>
+
+                <div class="slide"><figure class="fit">
+                  <img src="Media/wiring1.jpg" alt="Mechatronics robot wiring, photo 1 of 3" loading="lazy" width="598" height="694">
+                  <figcaption>Wiring. Awarded "Best Wiring" for clean cable routing, labeling, and sensor integration.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/wiring2.jpg" alt="Mechatronics robot wiring, photo 2 of 3" loading="lazy" width="599" height="654">
+                  <figcaption>Wiring, second view.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/wiring3.jpg" alt="Mechatronics robot wiring, photo 3 of 3" loading="lazy" width="601" height="631">
+                  <figcaption>Wiring, third view.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/manrobo1.jpg" alt="Laser cut ABS chassis components with 3D printed structural elements" loading="lazy" width="600" height="798">
+                  <figcaption>Laser cut ABS chassis components with FDM 3D printed structural elements.</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <img src="Media/manrobo3.jpg" alt="Color sensor mounted on a custom 3D printed arm" loading="lazy" width="601" height="449">
+                  <figcaption>Integrated color sensor mounted on a custom 3D printed arm.</figcaption>
+                </figure></div>
+              </div>
+              <button class="strip-arrow prev" type="button" aria-label="Previous photo" onclick="stepStrip('strip-mech',-1)">&#8249;</button>
+              <button class="strip-arrow next" type="button" aria-label="Next photo" onclick="stepStrip('strip-mech',1)">&#8250;</button>
+            </div>
+            <div class="strip-nav" id="nav-mech"></div>
+            <div class="strip-hint">7 photos · swipe, use the arrows, or click a dot</div>
+          </div>
+
+          <div class="media-panel" id="mech-videos">
+            <div class="strip-wrap video-strip">
+              <div class="photo-strip" id="strip-mech-videos">
+                <div class="slide"><figure class="fit">
+                  <video controls preload="metadata" playsinline poster="Media/mechrobot/robot_movement_poster.jpg" width="720" height="1280">
+                    <source src="Media/mechrobot/robot_movement.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>
+                  <figcaption>Movement demo. The robot showing how it drives and turns (0:33, no audio).</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <video controls preload="metadata" playsinline poster="Media/mechrobot/early_pid_line_follow_poster.jpg" width="720" height="1280">
+                    <source src="Media/mechrobot/early_pid_line_follow.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>
+                  <figcaption>Early PID line following (0:20, no audio).</figcaption>
+                </figure></div>
+                <div class="slide"><figure class="fit">
+                  <video controls preload="metadata" playsinline poster="Media/mechrobot/block_pickup_poster.jpg" width="720" height="1280">
+                    <source src="Media/mechrobot/block_pickup.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>
+                  <figcaption>Picking up a block (0:14, no audio).</figcaption>
+                </figure></div>
+              </div>
+              <button class="strip-arrow prev" type="button" aria-label="Previous video" onclick="stepStrip('strip-mech-videos',-1)">&#8249;</button>
+              <button class="strip-arrow next" type="button" aria-label="Next video" onclick="stepStrip('strip-mech-videos',1)">&#8250;</button>
+            </div>
+            <div class="strip-nav" id="nav-mech-videos"></div>
+            <div class="strip-hint">3 videos · swipe, use the arrows, or click a dot</div>
+          </div>
+
+          <div class="project-body">
+            <p class="project-desc muted">
+              An autonomous robot designed and built for a Dune 2 themed competition.
+            </p>
+            <ul class="project-bullets">
+              <li>Used an Arduino Mega to command motors, actuators, and sensors, with an Arduino Uno and XBee for wireless communication</li>
+              <li>Implemented PID control for line following and motor position control</li>
+              <li>Built the chassis from laser cut ABS with FDM 3D printed structural elements and machined brass support rods</li>
+            </ul>
+            <div class="project-links">
+              <a class="btn" href="https://santogezelin.github.io/mechrobot/" target="_blank" rel="noopener">More photos and videos on the project page</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. PROJECTILE LAUNCHER ROBOT -->
+        <div class="project-card">
+
+          <div class="project-head">
+            <div class="project-header">
+              <h3>Projectile Launcher Robot</h3>
+              <span class="muted">2022</span>
+            </div>
+            <div class="award-badge">3rd place out of 80 teams</div>
+
+          </div>
+          <div class="media-tabs">
+            <button class="media-tab active" onclick="switchTab(this,'launch-photos')">Photos</button>
+            <button class="media-tab" onclick="switchTab(this,'launch-videos')">Videos</button>
+          </div>
+
+          <div class="media-panel active" id="launch-photos">
+          <div class="photo-single">
+            <figure class="fit">
+              <img src="Media/projlaunch1.jpg" alt="Projectile launcher robot with automated reloading mechanism on the left and launching mechanism on the right" loading="lazy" width="1206" height="724">
+              <figcaption>Left: automated reloading mechanism. Right: projectile launching mechanism.</figcaption>
+            </figure>
+          </div>
+          </div>
+
+          <div class="media-panel" id="launch-videos">
+            <div class="video-single">
+              <figure class="fit">
+                <video controls preload="metadata" playsinline poster="Media/projlaunch/launcher_demo_poster.jpg" width="720" height="1320">
+                  <source src="Media/projlaunch/launcher_demo.mp4" type="video/mp4">
+                  Your browser does not support HTML5 video.
+                </video>
+                <figcaption>Launcher firing demo (1:00, no audio).</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <p class="project-desc muted">
+              A robot that fires ping pong balls at targets, built for a speed and accuracy competition.
+            </p>
+            <ul class="project-bullets">
+              <li>Used an Arduino Mega to command the actuators and motors that reload and fire</li>
+              <li>Placed 3rd out of 80 teams in the speed and accuracy competition</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. AUTOMATED MARKET INTELLIGENCE PIPELINE (text only) -->
+        <div class="project-card">
+          <div class="project-head">
+            <div class="project-header">
+              <h3>Automated Market Intelligence Pipeline</h3>
+              <span class="muted">2026</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc muted">
+              An automated daily research and reporting system built for my sales team at work.
+            </p>
+            <ul class="project-bullets">
+              <li>Built a scheduled agentic AI pipeline that runs daily, researches new municipal water treatment projects nationwide, and produces a formatted report</li>
+              <li>Designed the report structure: lead prioritization, project details, stakeholder mapping, competitive positioning, and recommended action</li>
+              <li>Implemented deduplication against a running log so previously reported leads are not surfaced twice</li>
+              <li>Runs unattended every morning and delivers directly to the sales team</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 6. PLACEHOLDER: project not written up yet.
+             Copy the text-only card above (project 5) or a media card (projects 1 to 4).
+             Card order: div.project-head (title, subtitle, date, badge) first, then hero images,
+             then carousel, then div.project-body (description, bullets, links row).
+             Fill in title, date, description, 2 to 4 bullets, and any images copied into Media/.
+        -->
+
+        <!-- 7. PLACEHOLDER: project not written up yet.
+             Same instructions and same card order as project 6.
+        -->
+
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section" id="education">
+      <h2>Education</h2>
+      <div class="card">
+        <div class="titleRow">
+          <p class="role">B.S. Mechanical Engineering, Robotics Minor · University of Utah</p>
+          <p class="muted" style="margin:0">May 2026</p>
+        </div>
+        <p class="muted">GPA 3.65 · WUE Scholarship recipient · Dean's List, seven semesters</p>
+        <ul>
+          <li>Graduate level robotics coursework: robot control, motion planning, manipulation, and perception, including hybrid position and force control, impedance and admittance control, operational space control, sliding mode control, and image based visual servoing, implemented in MATLAB and Simulink</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section" id="about">
+      <h2>About</h2>
+      <div class="card">
+        <p class="muted">
+          I earned my B.S. in Mechanical Engineering with a minor in Robotics from the University of Utah in May 2026. My senior capstone team designed and built a 512 pixel kinetic flip disc display that is now permanently installed in the J.W. Marriott Jr. Institute building, and I led its electromechanical design from breadboard prototype to commissioned install. In parallel I developed a receding horizon drone interception planner in Python and validated it across 500 Monte Carlo trials in 3D simulation with PyBullet visualization.
+        </p>
+        <p class="muted">
+          I now work as a Staff Mechanical Engineer at Beacon Water Technologies in Savannah, Georgia, where I work on pile cloth media filtration for municipal water reclamation. I am drawn to building complex physical systems and taking ownership of technical challenges from first prototype through delivery.
+        </p>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section" id="experience">
+      <h2>Professional Experience</h2>
+      <div class="grid">
+
+        <div class="card span12">
+          <div class="titleRow">
+            <p class="role">Staff Mechanical Engineer · Beacon Water Technologies / Orthos Liquid Systems</p>
+            <p class="muted" style="margin:0">Savannah, GA · Aug 2026 to Present</p>
+          </div>
+          <p class="muted">Pile cloth media filtration systems for municipal water reclamation</p>
+          <ul>
+            <li>Own the technical scope for preconstruction on assigned projects, including sizing and configuration of pile cloth media filtration systems, budgetary proposals, competitive bids, and full equipment submittals</li>
+            <li>Author and maintain acceptance and commissioning documentation that field crews execute without engineering supervision, including per item maintenance matrices, long term storage requirement procedures, and operations and maintenance sections, so that outcomes are consistent across sites and crews</li>
+            <li>Manage and track the submittal process end to end, verifying that every document is accurate, complete, and aligned with project specifications and delivery schedules before it reaches the customer and the engineer of record</li>
+            <li>Review instrumentation and control documentation across radar level transmitters, float switches, vacuum transmitters, turbidity and solids analyzers, variable frequency drives, and local control panels, resolving tag discrepancies and open RFIs directly with the design engineer</li>
+            <li>Perform onsite equipment receiving, inspection, and field verification at installed sites, identifying damage, configuration errors, and documentation mismatches before they become field failures</li>
+            <li>Coordinate with sales, engineering, and vendors through procurement to keep equipment accurate and delivered on schedule, including managing an international shipment against a fixed project milestone</li>
+            <li>Build reusable internal reference material, including a running technical standards document that captures sizing rules, component selection logic, and pricing methodology so that proposals stay consistent as the team grows</li>
+          </ul>
+        </div>
+
+        <div class="card span12">
+          <div class="titleRow">
+            <p class="role">Data Systems Engineer Intern · Quantum Surgery Center</p>
+            <p class="muted" style="margin:0">Newport Beach, CA · May 2025 to Aug 2025</p>
+          </div>
+          <ul>
+            <li>Cleaned and restructured electronic medical record data, reducing duplicate records and improving query reliability by 40 percent</li>
+            <li>Built a tracking system covering 500 or more records across intake, consultation, and conversion stages, giving leadership visibility into throughput and drop off by stage for the first time</li>
+            <li>Reorganized records to enable reliable transfer between systems that previously required manual reconciliation</li>
+          </ul>
+        </div>
+
+        <div class="card span12">
+          <div class="titleRow">
+            <p class="role">Research and Development Engineer Intern · BrightUro</p>
+            <p class="muted" style="margin:0">Irvine, CA · Jun 2024 to Aug 2024</p>
+          </div>
+          <p class="muted">Medical device startup</p>
+          <ul>
+            <li>Conducted root cause analysis on a prototype system to localize failures to hardware versus software, isolating the responsible subsystem before escalating to the responsible engineer</li>
+            <li>Independently designed, prototyped, and iterated a robotic assembly solution deployed on the production bench in a startup environment with no existing automation</li>
+            <li>Executed human factors testing protocols supporting an FDA 510(k) regulatory submission, running scripted procedures with structured data capture against predefined pass criteria</li>
+            <li>Designed 3D printed fixtures and tooling in SOLIDWORKS to reduce assembly time and remove operator variability</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section" id="skills">
+      <h2>Technical Skills</h2>
+      <div class="grid">
+        <div class="card span6">
+          <p class="kicker">Autonomy and Control</p>
+          <p class="muted">Motion planning (A*, RRT*, Dijkstra, D* Lite) · Receding horizon planning · Monte Carlo reachable set sampling · PID control · Hybrid position and force control · Impedance and admittance control · Operational space control · Sliding mode control · Image based visual servoing · State space and kinematic modeling</p>
+        </div>
+        <div class="card span6">
+          <p class="kicker">Software</p>
+          <p class="muted">Python · C++ · MATLAB · Simulink · PyBullet · ROS · Git · Arduino and embedded C · Linux · Shell scripting</p>
+        </div>
+        <div class="card span6">
+          <p class="kicker">Integration and Test</p>
+          <p class="muted">Factory acceptance testing · Equipment receiving and inspection · Commissioning documentation · Root cause and fault isolation · Instrumentation and control document review · Submittal and RFI management · Test plan and success criteria authoring</p>
+        </div>
+        <div class="card span6">
+          <p class="kicker">Sensors and Electronics</p>
+          <p class="muted">Sensor integration · PCB design and integration (EAGLE) · H bridge motor drivers · Shift register control · XBee wireless communication · Radar level transmitters · TSS analyzers · Local control panels · Soldering and wiring</p>
+        </div>
+        <div class="card span6">
+          <p class="kicker">Hardware and CAD</p>
+          <p class="muted">SOLIDWORKS (CSWA certified) · AutoCAD · Autodesk Inventor · FDM and SLA 3D printing · Laser cutting · Basic machining · Bluebeam · Microsoft Excel</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>
+          <span class="muted">Email:</span> <a href="mailto:santog711@gmail.com">santog711@gmail.com</a><br>
+          <span class="muted">Phone:</span> <a href="tel:+19493951018">949-395-1018</a><br>
+          <span class="muted">LinkedIn:</span> <a href="https://www.linkedin.com/in/santogezelin" target="_blank" rel="noopener">linkedin.com/in/santogezelin</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">© <span id="y"></span> Santo Gezelin · Built with GitHub Pages</div>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    /* Dark mode toggle: remembers the choice, defaults to the system setting */
+    (function(){
+      var btn = document.getElementById('themeToggle');
+      function label(){ btn.setAttribute('aria-checked', document.documentElement.getAttribute('data-theme') === 'dark' ? 'true' : 'false'); }
+      btn.onclick = function(){
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try{ localStorage.setItem('theme', next); }catch(e){}
+        label();
+      };
+      label();
+    })();
+
+    /* Photo strip: dots, arrows, and scroll sync */
+    function initStrip(stripId, navId) {
+      const strip = document.getElementById(stripId);
+      const nav = document.getElementById(navId);
+      if (!strip || !nav) return;
+      const slides = strip.querySelectorAll('.slide');
+      const count = slides.length;
+      if (count <= 1) return;
+
+      const dots = [];
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'strip-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to photo ' + (i + 1));
+        d.onclick = () => strip.scrollTo({left: strip.clientWidth * i, behavior: 'smooth'});
+        nav.appendChild(d);
+        dots.push(d);
+      });
+
+      strip.addEventListener('scroll', () => {
+        const idx = Math.round(strip.scrollLeft / strip.clientWidth);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }, {passive: true});
+    }
+
+    function stepStrip(stripId, dir) {
+      const strip = document.getElementById(stripId);
+      if (!strip) return;
+      const count = strip.querySelectorAll('.slide').length;
+      let idx = Math.round(strip.scrollLeft / strip.clientWidth) + dir;
+      if (idx < 0) idx = count - 1;
+      if (idx >= count) idx = 0;
+      strip.scrollTo({left: strip.clientWidth * idx, behavior: 'smooth'});
+    }
+
+    initStrip('strip-capstone', 'nav-capstone');
+    initStrip('strip-capstone-videos', 'nav-capstone-videos');
+    initStrip('strip-mech', 'nav-mech');
+    initStrip('strip-mech-videos', 'nav-mech-videos');
+
+    /* Media tab switcher (Photos / Videos) */
+    function switchTab(btn, panelId) {
+      const card = btn.closest('.project-card');
+      card.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+      card.querySelectorAll('.media-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(panelId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
